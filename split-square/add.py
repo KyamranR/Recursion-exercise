@@ -50,9 +50,17 @@ Unevenly-nested squares can be added::
 
 def add(s1, s2):
     """Produce new split square adding two input squares."""
-
+    if isinstance(s1, int) and isinstance(s2, int):
+        return max(s1, s2)
+    
+    if isinstance(s1, int):
+        s1 = [s1] * 4
+    if isinstance(s2, int):
+        s2 = [s2] * 4
+    
+    return [add(a,b) for a,b in zip(s1, s2)]
 
 if __name__ == "__main__":
     import doctest
     if doctest.testmod().failed == 0:
-        print "\n*** ALL TESTS PASS; YOU'RE A RECURSION WIZARD!\n"
+        print ("\n*** ALL TESTS PASS; YOU'RE A RECURSION WIZARD!\n")
